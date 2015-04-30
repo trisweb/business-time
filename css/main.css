@@ -21,7 +21,7 @@ footer {
 .centered {
   text-align: center; }
 h1 {
-  color: #222;
+  color: #777;
   font-weight: 100;
   font-size: 2.5rem;
   margin-bottom: 0.75em; }
@@ -65,7 +65,7 @@ a {
 .gender-picker .the-gender-divide {
   height: 300px;
   width: 30px;
-  background-color: black;
+  background-color: #222;
   display: inline-block;
   margin: 0 20px; }
 article.status, section.count {
