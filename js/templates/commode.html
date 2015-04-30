@@ -1,0 +1,12 @@
+<div class="centered">
+  <a href="#/"><img style="height: 80px;" src="img/gender-{{gender}}.svg" ng-class="{'available': numberOpen > 0}"></a>
+  <h1>{{gender | humanize}}'s Bathroom</h1>
+
+  <article class="status" ng-class="{'available': numberOpen > 0}">
+    {{ numberOpen > 0 ? ':-)' : ':-(' }}
+
+    <section class="count">
+      {{numberOpen}} / {{total}}
+    </section>
+  </article>
+</div>

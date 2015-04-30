@@ -39,7 +39,7 @@ a {
     color: #009DFF; }
   a:hover {
     text-decoration: underline;
-    color: #F15A29; }
+    color: #f56c4a; }
 .right {
   float: right; }
 @-webkit-keyframes slideIn {
@@ -68,3 +68,18 @@ a {
   background-color: black;
   display: inline-block;
   margin: 0 20px; }
+article.status, section.count {
+  transition: all 0.3s ease-out; }
+article.status {
+  background-color: #DD0A17;
+  padding: 2rem 1rem;
+  border-radius: 5rem;
+  font-weight: bold;
+  color: white;
+  font-size: 3rem; }
+  article.status.available {
+    background-color: #2bb972; }
+section.count {
+  font-weight: 100;
+  font-size: 4rem;
+  margin-top: 2rem; }
