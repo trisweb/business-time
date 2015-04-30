@@ -29,28 +29,17 @@ p {
   color: #666;
   line-height: 1.5em;
   margin: 0; }
-p + p {
-  margin-top: 2em; }
+  p + p {
+    margin-top: 2em; }
 a {
   color: #009DFF;
   text-decoration: none;
   transition: all 0.2s ease-in-out; }
-a:visited {
-  color: #009DFF; }
-a:hover {
-  text-decoration: underline;
-  color: #F15A29; }
-a.button {
-  display: inline-block;
-  background-color: #009DFF;
-  padding: 1rem 1.5rem;
-  border-radius: 0.25rem;
-  color: white;
-  font-weight: 500;
-  font-size: 1.15rem; }
-a.button:hover {
-  background-color: #34AFFF;
-  text-decoration: none; }
+  a:visited {
+    color: #009DFF; }
+  a:hover {
+    text-decoration: underline;
+    color: #F15A29; }
 .right {
   float: right; }
 @-webkit-keyframes slideIn {
@@ -65,3 +54,17 @@ a.button:hover {
 .animated-view.ng-enter {
   animation: 0.35s slideIn ease-in-out;
   -webkit-animation: 0.35s slideIn ease-in-out; }
+.gender-picker a {
+  display: inline-block; }
+  .gender-picker a svg {
+    height: 300px; }
+    .gender-picker a svg > * {
+      transition: all 0.2s ease-out; }
+  .gender-picker a:hover svg > * {
+    fill: #009DFF; }
+.gender-picker .the-gender-divide {
+  height: 300px;
+  width: 30px;
+  background-color: black;
+  display: inline-block;
+  margin: 0 20px; }

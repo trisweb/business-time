@@ -1,0 +1,23 @@
+.gender-picker {
+	a {
+		display: inline-block;
+		svg {
+			height: 300px;
+			& > * {
+				transition: all 0.2s ease-out;
+			}
+		}
+		&:hover {
+			svg > * {
+				fill: $blue;
+			}
+		}
+	}
+	.the-gender-divide {
+		height: 300px;
+		width: 30px;
+		background-color: black;
+		display: inline-block;
+		margin: 0 20px;
+	}
+}

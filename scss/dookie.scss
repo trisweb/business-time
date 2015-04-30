@@ -38,38 +38,31 @@ p {
   color: #666;
   line-height: 1.5em;
   margin: 0;
+
+  &+p {
+    margin-top: 2em;
+  }
 }
-p + p {
-  margin-top: 2em;
-}
+
 a {
-  color: #009DFF;
+  color: $blue;
   text-decoration: none;
   transition: all 0.2s ease-in-out;
+
+  &:visited {
+    color: $blue;
+  }
+  &:hover {
+    text-decoration: underline;
+    color: $orange;
+  }
 }
-a:visited { color: #009DFF; }
-a:hover {
-  text-decoration: underline;
-  color: #F15A29;
-}
-a.button {
-  display: inline-block;
-  background-color: #009DFF;
-  padding: 1rem 1.5rem;
-  border-radius: 0.25rem;
-  color: white;
-  font-weight: 500;
-  font-size: 1.15rem;
-}
-a.button:hover {
-  background-color: #34AFFF;
-  text-decoration: none;
-}
+
 .right {
   float: right;
 }
 
-
+// Main view animation
 @-webkit-keyframes slideIn {
   0% {
     opacity: 0;
