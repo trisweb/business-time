@@ -5,7 +5,7 @@ body {
   width: 60%;
   max-width: 900px;
   margin: 4rem auto 0;
-  font-family: 'Proxima Nova', Helvetica, Arial, sans-serif; }
+  font-family: 'proxima-nova', 'Proxima Nova', Helvetica, Arial, sans-serif; }
 header {
   padding-bottom: 2.5rem; }
 header img {
