@@ -37,7 +37,7 @@ gulp.task('watch', function(){
 });
 
 gulp.task('deploy', shell.task([
-	'scp -r css img js index.html t:/var/www/business-time/'
+	'scp -r css img js index.html t:/srv/www/business-time/'
 ]));
 
 gulp.task('default', ['styles', 'watch']);
