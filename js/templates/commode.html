@@ -1,6 +1,6 @@
 <div class="centered">
-  <a href="#/" class="gender-link"><img src="img/gender-{{gender}}.svg" ng-class="{'available': numberOpen > 0}"></a>
-  <h1>{{gender | humanize}}'s Bathroom</h1>
+  <h1><a href="#/" class="gender-link"><img src="img/gender-{{gender}}.svg" ng-class="{'available': numberOpen > 0}"> {{gender | humanize}}'s Bathroom</a></h1>
+
 
   <article class="status"
     ng-class="{'available': data[gender] > 1, 'warning': data[gender] == 1, 'unavailable': data[gender] == 0}">

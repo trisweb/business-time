@@ -22,19 +22,25 @@
 	}
 }
 
-.gender-link {
+a.gender-link {
+	color: #222;
+	text-decoration: none;
+	&:hover {
+		color: $blue;
+		text-decoration: none;
+	}
 	img {
 		height: 6rem;
 		transition: opacity 0.2s ease-out;
 	}
 	&:hover img {
-		opacity: 0.7;
+		opacity: 0.5;
 	}
 }
 
 .emoji {
 	font-weight: normal;
-	font-size: 5.5rem;
+	font-size: 5rem;
 }
 
 article.status, section.count {
@@ -43,7 +49,7 @@ article.status, section.count {
 
 article.status {
 	background-color: $red;
-	padding: 2rem 1rem;
+	padding: 1rem 1rem 2rem;
 	border-radius: 1rem;
 	font-weight: bold;
 	color: white;
@@ -64,7 +70,6 @@ section.count {
 	font-weight: 100;
 	font-size: 3.5rem;
 	margin-top: 1rem;
-	margin-bottom: 2rem;
 
 	h1 {
 		font-size: 6rem;
@@ -78,7 +83,7 @@ section.count {
 		text-transform: uppercase;
 		font-size: 2rem;
 		font-weight: 100;
-		margin: 1rem 0 0;
+		margin: 0;
 		letter-spacing: 0.05em;
 		color: rgba(255,255,255,0.6);
 	}
