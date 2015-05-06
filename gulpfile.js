@@ -6,6 +6,7 @@ var mainBowerFiles = require('main-bower-files');
 var uglify = require('gulp-uglify');
 var colors = require('colors');
 var removeEmptyLines = require('gulp-remove-empty-lines');
+var shell = require('gulp-shell');
 
 var errorHandler = function(err) {
 	console.log("[SASS Error]".yellow + " " + err.toString().red);
@@ -34,5 +35,9 @@ gulp.task('watch', function(){
 	gulp.watch(['scss/**/*.scss'], ['styles']);
 	gulp.watch('bower.json', ['bower-files']);
 });
+
+gulp.task('deploy', shell.task([
+	'scp -r assets css img index.html js t:~/trisweb-www/business-time/'
+]));
 
 gulp.task('default', ['styles', 'watch']);

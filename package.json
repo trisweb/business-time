@@ -32,6 +32,7 @@
     "gulp-notify": "",
     "gulp-sass": "",
     "gulp-uglify": "^0.3.1",
-    "gulp-remove-empty-lines": ""
+    "gulp-remove-empty-lines": "",
+    "gulp-shell": ""
   }
 }
