@@ -1,9 +1,13 @@
 var crapp = angular.module("crapp", ["ngRoute", "ngAnimate"]);
 var POLLING_PERIOD = 2000;
 
-if (URL === undefined) {
+if (API_ENDPOINT === undefined) {
   alert("A URL must be specified in js/config.js as a string (var URL = 'https://...') - this is so we don't check in the API endpoint to github.")
 }
+
+var c_green = "#2BB972";
+var c_yellow = "#E8A631";
+var c_red = "#DD0A17";
 
 function refreshIcon(color) {
   var canvas = document.createElement('canvas'),
@@ -47,16 +51,16 @@ function refreshIcon(color) {
 }
 
 function setIcon(stallsFree) {
-  console.log("Setting icon - " + stallsFree);
   if (stallsFree == 0) {
-    refreshIcon("red");
+    refreshIcon(c_red);
   } else if (stallsFree == 1) {
-    refreshIcon("yellow");
+    refreshIcon(c_yellow);
   } else {
-    refreshIcon("green");
+    refreshIcon(c_green);
   }
 }
 
+// Main Angular app
 crapp.config(
   function($routeProvider) {
     $routeProvider
@@ -74,12 +78,12 @@ crapp.config(
   })
 
 // Service for polling the API endpoint
-// TODO
 .factory('DoorService',
   function($http, $timeout) {
     var data = { response: {}, calls: 0 };
+
     var poller = function() {
-      $http.jsonp(URL+"&callback=JSON_CALLBACK").success(function(r) {
+      $http.jsonp(API_ENDPOINT+"&callback=JSON_CALLBACK").success(function(r) {
         data.response = r;
         data.calls++;
 
@@ -119,6 +123,7 @@ crapp.config(
 // View Main
 .controller('MainController',
   function($scope, DoorService) {
+    refreshIcon("gray");
   })
 
 // View Settings
@@ -157,6 +162,7 @@ crapp.config(
     };
   })
 
+// Run the poller
 .run(function(DoorService) {})
 
 ;

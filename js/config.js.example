@@ -1,2 +1,2 @@
 // The URL of the Smartthings graph API for your specific sensors
-var URL = "https://graph.api.smartthings.com/your/api/path/goes/here";
+var API_ENDPOINT = "https://graph.api.smartthings.com/your/api/path/goes/here";
