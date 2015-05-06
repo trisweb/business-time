@@ -2,11 +2,11 @@
   <a href="#/"><img style="height: 80px;" src="img/gender-{{gender}}.svg" ng-class="{'available': numberOpen > 0}"></a>
   <h1>{{gender | humanize}}'s Bathroom</h1>
 
-  <article class="status" ng-class="{'available': numberOpen > 0}">
-    {{ numberOpen > 0 ? ':-)' : ':-(' }}
+  <article class="status" ng-class="{'available': data[gender] > 0}">
+    <div class="emoji">{{ data[gender] > 0 ? ':-)' : ':-(' }}</div>
 
     <section class="count">
-      {{numberOpen}} / {{total}}
+      {{data[gender]}} / {{total()}} stalls available
     </section>
   </article>
 </div>

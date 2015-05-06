@@ -1,16 +1,16 @@
 html {
   background-color: white;
+  font-size: 16px;
   font-size: 16px; }
 body {
-  width: 50%;
-  min-width: 600px;
-  max-width: 800px;
+  width: 60%;
+  max-width: 900px;
   margin: 5rem auto 0;
   font-family: 'Proxima Nova', 'Lucida Grande', Helvetica, Arial, sans-serif; }
 header {
   padding-bottom: 2.5rem; }
 header img {
-  width: 140px;
+  width: 10rem;
   border: none; }
 main {
   /*border-top: 1px solid #efefef;
@@ -68,18 +68,20 @@ a {
   background-color: #222;
   display: inline-block;
   margin: 0 20px; }
+.emoji {
+  font-weight: normal;
+  font-size: 5rem; }
 article.status, section.count {
   transition: all 0.3s ease-out; }
 article.status {
   background-color: #DD0A17;
   padding: 2rem 1rem;
-  border-radius: 5rem;
+  border-radius: 1rem;
   font-weight: bold;
-  color: white;
-  font-size: 3rem; }
+  color: white; }
   article.status.available {
     background-color: #2bb972; }
 section.count {
   font-weight: 100;
-  font-size: 4rem;
+  font-size: 3.5rem;
   margin-top: 2rem; }

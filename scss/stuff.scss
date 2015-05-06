@@ -22,6 +22,11 @@
 	}
 }
 
+.emoji {
+	font-weight: normal;
+	font-size: 5rem;
+}
+
 article.status, section.count {
 	transition: all 0.3s ease-out;
 }
@@ -29,10 +34,9 @@ article.status, section.count {
 article.status {
 	background-color: $red;
 	padding: 2rem 1rem;
-	border-radius: 5rem;
+	border-radius: 1rem;
 	font-weight: bold;
 	color: white;
-	font-size: 3rem;
 
 	&.available {
 		background-color: $green;
@@ -41,6 +45,6 @@ article.status {
 
 section.count {
 	font-weight: 100;
-	font-size: 4rem;
+	font-size: 3.5rem;
 	margin-top: 2rem;
 }
