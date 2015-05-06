@@ -116,7 +116,11 @@ crapp.config(
     poller();
 
     return {
-      data: data
+      data: data,
+      reset: function() {
+        this.data.response = {};
+        this.data.calls = 0;
+      }
     };
   })
 
@@ -129,6 +133,7 @@ crapp.config(
 // View Settings
 .controller('CommodeController',
   function($scope, DoorService, $routeParams) {
+    DoorService.reset();
     $scope.gender = $routeParams.gender;
     $scope.data = DoorService.data;
 
@@ -141,8 +146,17 @@ crapp.config(
     };
 
     $scope.$watch("data."+$scope.gender, function(oldVal, newVal) {
-      console.log("Updated", $scope.numberOpen());
       setIcon($scope.numberOpen());
+
+      // Wait until the first call, then tag the room viewed event with the number open
+      if ($scope.data.calls <= 1 && !isNaN($scope.data[$scope.gender])) {
+        ll('tagEvent', 'Room Viewed',
+          {
+            'gender': $scope.gender,
+            'stallsFree': $scope.data[$scope.gender]
+          }
+        );
+      }
     });
   })
 

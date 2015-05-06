@@ -8,6 +8,19 @@
     <script src="js/vendor.js"></script>
     <script src="js/config.js"></script>
     <script src="js/crapp.js"></script>
+
+    <script>
+      +function(l,y,t,i,c,s) {
+          l['LocalyticsGlobal'] = i;
+          l[i] = function() { (l[i].q = l[i].q || []).push(arguments) };
+          l[i].t = +new Date;
+          (s = y.createElement(t)).type = 'text/javascript';
+          s.src = '//web.localytics.com/v3/localytics.js';
+          (c = y.getElementsByTagName(t)[0]).parentNode.insertBefore(s, c);
+          ll('init', 'be167f8edbf8aa267c50f33-8224988e-f410-11e4-31a2-004a77f8b47f', {} /* Options */);
+      }(window, document, 'script', 'll');
+    </script>
+
     <link rel="stylesheet" href="css/main.css">
     <link id="favicon" rel="icon" type="image/png">
   </head>
