@@ -60,22 +60,26 @@ a {
 }
 
 // Main view animation
-@-webkit-keyframes slideIn {
+@-webkit-keyframes pageIn {
   0% {
     opacity: 0;
-    -webkit-transform: translateY(-0.75rem);
-    transform: translateY(-0.75rem);
+    //-webkit-transform: translateY(-0.75rem);
+    //transform: translateY(-0.75rem);
+    -webkit-transform: scale(0.94);
+    transform: scale(0.94);
   }
 
   100% {
     opacity: 1;
-    -webkit-transform: translateY(0);
-    transform: translateY(0);
+    //-webkit-transform: translateY(0);
+    //transform: translateY(0);
+    -webkit-transform: scale(1);
+    transform: scale(1);
   }
 }
 .animated-view {
   &.ng-enter {
-    animation: 0.35s slideIn ease-in-out;
-    -webkit-animation: 0.35s slideIn ease-in-out;
+    animation: 0.35s pageIn ease-out;
+    -webkit-animation: 0.35s pageIn ease-out;
   }
 }
