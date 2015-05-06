@@ -111,6 +111,11 @@ crapp.config(
         }
 
         $timeout(poller, POLLING_PERIOD);
+      }).
+      error(function(data, status, headers, config, statusText) {
+        console.log("Error when polling API: "+status);
+        // Retry indefinitely
+        $timeout(poller, POLLING_PERIOD);
       });
     };
     poller();
