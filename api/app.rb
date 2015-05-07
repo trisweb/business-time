@@ -20,7 +20,7 @@ class Cache
 	end
 end
 
-get "/api" do
+get "/" do
 	content_type :json
 	response = nil
 	# If a cached key exists and it's less than POLL_TIME ms old, use it
