@@ -1,0 +1,5 @@
+class BusinessTimeConfig
+	def self.api_endpoint
+		"https://graph.api.smartthings.com/..."
+	end
+end

@@ -2,3 +2,4 @@ bower_components/*
 node_modules/*
 .DS_*
 js/config.js
+api/config.rb
