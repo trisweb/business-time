@@ -7,43 +7,36 @@ require './config'
 # to the upstream server)
 POLL_TIME = 1
 
-class Cache
-	@@cache = {}
-
-	def self.set(k, v)
-		#puts "Cache.set(#{k}, #{v})"
-		@@cache[k] = v
-	end
-
-	def self.get(k)
-		#puts "Cache.get(#{k}) => #{@@cache[k]}"
-		@@cache[k]
-	end
-end
-
 get "/" do
 	# cache = Cache
 	cache = Memcached.new("localhost:11211")
-	content_type :json
 	result = nil
 	# If a cached key exists and it's less than POLL_TIME ms old, use it
-	response_updated_at = cache.get('response_updated_at') || 0
-	response_valid = Time.now.to_f - response_updated_at <= POLL_TIME
-	if response_valid || cache.get('request_in_progress')
-		response.headers[:CachedResponse] = "true"
-		result = cache.get 'response'
+	result_updated_at = cache.get('result_updated_at') rescue 0
+	request_in_progress = cache.get('request_in_progress') rescue false
+	result_valid = Time.now.to_f - result_updated_at <= POLL_TIME
+	if result_valid || request_in_progress
+		puts "=== Serving from Cache! ==="
+		response.headers['Cached-Response'] = "true"
+		result = cache.get 'result' rescue nil
 	else
 		cache.set 'request_in_progress', true
+		begin
 	    uri = URI(BusinessTimeConfig.api_endpoint + "&callback=")
 	    content_type 'application/json', :charset => 'utf-8'
 	    result = Net::HTTP.get(uri)
-	    cache.set 'response', response
-	    cache.set 'response_updated_at', Time.now.to_f
-	    cache.set 'request_in_progress', false
+	    cache.set 'result', result.to_s
+	    cache.set 'result_updated_at', Time.now.to_f
+	  rescue StandardError => e
+	  	puts "An error occurred while trying to contact the API"
+	  ensure
+    	cache.set 'request_in_progress', false
+    end
 	end
 	# Prepend the requested callback (Angular rotates it)
-	if callback = params['callback'].to_s
-		result = callback + result
+	if !params['callback'].nil?
+		result = params['callback'].to_s + result
 	end
+	content_type 'application/javascript'
 	result
 end
