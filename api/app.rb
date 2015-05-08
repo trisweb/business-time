@@ -1,6 +1,4 @@
-require 'sinatra'
 require 'net/http'
-require 'memcached'
 require './config'
 
 # Time to cache in seconds (a maximum of one request per POLL_TIME will be made
