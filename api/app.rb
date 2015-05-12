@@ -31,10 +31,14 @@ get "/" do
     	cache.set 'request_in_progress', false
     end
 	end
-	# Prepend the requested callback (Angular rotates it)
 	if !params['callback'].nil?
+		# Prepend the requested callback for JSONP (Angular rotates it, so we can't cache)
 		result = params['callback'].to_s + result
+		content_type 'application/javascript'
+	else
+		# If no callback is specified, return straight up JSON
+		result = result[1..-2]
+		content_type 'application/json'
 	end
-	content_type 'application/javascript'
 	result
 end
