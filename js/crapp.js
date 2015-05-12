@@ -2,7 +2,7 @@ var crapp = angular.module("crapp", ["ngRoute", "ngAnimate"]);
 var POLLING_PERIOD = 2000;
 
 if (API_ENDPOINT === undefined) {
-  alert("A URL must be specified in js/config.js as a string (var URL = 'https://...') - this is so we don't check in the API endpoint to github.")
+  alert("A URL must be specified in js/config.js as a string (var API_ENDPOINT = 'https://...') - this is so we don't check in the API endpoint to github.")
 }
 
 var c_green = "#2BB972";
@@ -61,21 +61,25 @@ function setIcon(stallsFree) {
 }
 
 // Main Angular app
-crapp.config(
-  function($routeProvider) {
-    $routeProvider
-      .when('/', {
-        controller:'MainController',
-        templateUrl:'js/templates/main.html'
-      })
-      .when('/:gender', {
-        controller: 'CommodeController',
-        templateUrl: 'js/templates/commode.html'
-      })
-      .otherwise({
-        redirectTo:'/'
-      });
-  })
+crapp
+.config(function($routeProvider) {
+  $routeProvider
+    .when('/', {
+      controller:'MainController',
+      templateUrl:'js/templates/main.html'
+    })
+    .when('/:gender', {
+      controller: 'CommodeController',
+      templateUrl: 'js/templates/commode.html'
+    })
+    .otherwise({
+      redirectTo:'/'
+    });
+})
+
+.config(function($animateProvider) {
+  $animateProvider.classNameFilter(/^(?:(?!ng-animate-disabled).)*$/);
+})
 
 // Service for polling the API endpoint
 .factory('DoorService',
@@ -141,6 +145,7 @@ crapp.config(
     DoorService.reset();
     $scope.gender = $routeParams.gender;
     $scope.data = DoorService.data;
+    $scope.openStalls = 0;
 
     $scope.numberOpen = function() {
       return $scope.data[$scope.gender];
@@ -150,11 +155,12 @@ crapp.config(
       return $scope.data[$scope.gender+"Total"];
     };
 
-    $scope.$watch("data."+$scope.gender, function(oldVal, newVal) {
+    $scope.$watch("data", function(oldVal, newVal) {
       setIcon($scope.numberOpen());
+      $scope.openStalls = $scope.data[$scope.gender];
 
       // Wait until the first call, then tag the room viewed event with the number open
-      if ($scope.data.calls <= 1 && !isNaN($scope.data[$scope.gender])) {
+      if ($scope.data.calls == 1 && !isNaN($scope.data[$scope.gender])) {
         ll('tagEvent', 'Room Viewed',
           {
             'gender': $scope.gender,
@@ -162,7 +168,7 @@ crapp.config(
           }
         );
       }
-    });
+    }, true);
   })
 
 .filter('humanize',
