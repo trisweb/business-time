@@ -60,6 +60,28 @@ function setIcon(stallsFree) {
   }
 }
 
+function checkNotificationPermission() {
+  if (Notification.permission !== 'denied'){
+    Notification.requestPermission(function (permission) {
+      console.log("Notification permission: " + permission);
+    });
+  }
+}
+
+function notify() {
+  var msg = "It's Business Time!"
+  // check if the browser supports notifications
+  if(("Notification" in window) && (Notification.permission === "granted")){
+    var image = 'img/clock.png';
+    var options = {
+      icon: image
+    }
+    var notification = new Notification(msg, options);
+  }else{
+    window.alert(msg);
+  }
+}
+
 // Main Angular app
 crapp
 .config(function($routeProvider) {
@@ -156,6 +178,12 @@ crapp
       return $scope.data[$scope.gender+"Total"];
     };
 
+    $scope.alertMeUpdated = function(){
+      if($scope.alertMe){
+        checkNotificationPermission();
+      }
+    };
+
     $scope.$watch("data", function(oldVal, newVal) {
       setIcon($scope.numberOpen());
       $scope.openStalls = $scope.data[$scope.gender];
@@ -165,7 +193,7 @@ crapp
         $scope.alertMe = false;
         // wrap in a timeout so that the display can update with the new numbers.
         $timeout(function(){
-          $window.alert("It's business time!");
+          notify();
         });
       }
 
