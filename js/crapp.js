@@ -141,11 +141,12 @@ crapp
 
 // View Settings
 .controller('CommodeController',
-  function($scope, DoorService, $routeParams) {
+  function($scope, DoorService, $routeParams, $window, $timeout) {
     DoorService.reset();
     $scope.gender = $routeParams.gender;
     $scope.data = DoorService.data;
     $scope.openStalls = 0;
+    $scope.alertMe = false;
 
     $scope.numberOpen = function() {
       return $scope.data[$scope.gender];
@@ -158,6 +159,15 @@ crapp
     $scope.$watch("data", function(oldVal, newVal) {
       setIcon($scope.numberOpen());
       $scope.openStalls = $scope.data[$scope.gender];
+
+      // Alert a user that has been waiting for a stall to open.
+      if($scope.alertMe && ($scope.openStalls > 0)){
+        $scope.alertMe = false;
+        // wrap in a timeout so that the display can update with the new numbers.
+        $timeout(function(){
+          $window.alert("It's business time!");
+        });
+      }
 
       // Wait until the first call, then tag the room viewed event with the number open
       if ($scope.data.calls == 1 && !isNaN($scope.data[$scope.gender])) {
@@ -191,5 +201,3 @@ crapp
 .run(function(DoorService) {})
 
 ;
-
-
