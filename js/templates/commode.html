@@ -1,20 +1,24 @@
 <div class="centered">
-  <h1><a href="#/" class="gender-link"><img src="img/gender-{{gender}}.svg" ng-class="{'available': numberOpen > 0}"> {{gender | humanize}}'s Bathroom</a></h1>
+  <h1><a href="#/" class="gender-link">{{gender | humanize}}'s Bathroom <img src="img/gender-{{gender}}.svg" ng-class="{'available': numberOpen > 0}"></a></h1>
 
 
   <article class="status ng-animate-disabled"
-    ng-class="{'available': openStalls > 1, 'warning': openStalls == 1, 'unavailable': openStalls == 0}">
+    ng-class="{'available': openStalls > 1, 'warning': openStalls == 1, 'unavailable': openStalls == 0, 'alertme-active': alertMe}">
     <div class="emoji">{{ openStalls > 0 ? ':-)' : ':-(' }}</div>
 
     <section class="count">
       <h1>{{openStalls}}/{{total()}}</h1>
       <h2>stalls available</h2>
     </section>
-    <section ng-show="openStalls == 0">
-      <input type="checkbox" ng-model="alertMe" ng-change="alertMeUpdated()"> Alert me when it's business time.
+    <section ng-show="openStalls == 0" class="alertme">
+      <label><input type="checkbox" ng-model="alertMe" ng-change="alertMeUpdated()">
+
+        <span ng-hide="alertMe">Alert me when it's business time</span>
+        <span ng-show="alertMe">OK! Waiting on a stall to open up...</span>
+      </label>
     </section>
   </article>
-  <!-- for testing alert feature. Leaving it just in case.
+  <!-- for testing the alert feature. Leaving it just in case.
     <button ng-click="data.men = 0">test none</button>
     <button ng-click="data.men = 1">test free</button> -->
 </div>

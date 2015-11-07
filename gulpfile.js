@@ -37,7 +37,7 @@ gulp.task('watch', function(){
 });
 
 gulp.task('deploy', shell.task([
-	'scp -r css img api index.html trisweb@trisweb.com:/srv/www/business-time/'
+	'scp -r css img api index.html trisweb@trisweb.com:/srv/www/business-time/',
 	'scp -r js/templates js/crapp.js js/vendor.js trisweb@trisweb.com:/srv/www/business-time/js/'
 ]));
 

@@ -1,10 +1,11 @@
 html {
-  background-color: white;
+  background-color: #f8f8f8;
   font-size: 16px; }
 body {
   width: 60%;
   max-width: 900px;
   margin: 4rem auto 0;
+  padding-bottom: 4rem;
   font-family: 'proxima-nova', 'Proxima Nova', Helvetica, Arial, sans-serif; }
 header {
   padding-bottom: 2.5rem; }
@@ -66,34 +67,30 @@ a {
   display: inline-block;
   margin: 0 20px; }
 a.gender-link {
-  color: #222;
+  color: #111;
   text-decoration: none; }
   a.gender-link:hover {
-    color: #009DFF;
+    opacity: 0.5;
     text-decoration: none; }
   a.gender-link img {
-    height: 6rem;
+    height: 2rem;
     transition: opacity 0.2s ease-out; }
-  a.gender-link:hover img {
-    opacity: 0.5; }
 .emoji {
   font-weight: normal;
   font-size: 5rem; }
 article.status, section.count {
-  transition: all 0.35s ease-in-out; }
+  transition: all 0.8s cubic-bezier(0, 0.78, 0.4, 0.95); }
 article.status {
   background-color: #DD0A17;
   padding: 1rem 1rem 2rem;
-  border-radius: 1rem;
-  font-weight: bold;
   color: white;
-  box-shadow: 0 1rem 3rem -1.5rem #DD0A17; }
+  box-shadow: 8rem -4rem 10rem 16rem rgba(221, 10, 23, 0.15), -10rem 10rem 25rem 20rem rgba(221, 10, 23, 0.1); }
   article.status.available {
     background-color: #2BB972;
-    box-shadow: 0 1rem 3rem -1.5rem #2BB972; }
+    box-shadow: -7rem 13rem 11rem 18rem rgba(43, 185, 114, 0.4), 10rem -10rem 7rem 13rem rgba(43, 185, 114, 0.05); }
   article.status.warning {
     background-color: #E8A631;
-    box-shadow: 0 1rem 3rem -1.5rem #E8A631; }
+    box-shadow: 10rem 10rem 8rem 14rem rgba(232, 166, 49, 0.2), -10rem -10rem 18rem 20rem rgba(232, 166, 49, 0.35); }
 section.count {
   font-weight: 100;
   font-size: 3.5rem;
@@ -111,12 +108,30 @@ section.count {
     margin: 0;
     letter-spacing: 0.05em;
     color: rgba(255, 255, 255, 0.6); }
-@media all and (max-device-width: 736px) {
+section.alertme {
+  margin-top: 1.5rem;
+  font-weight: normal; }
+  section.alertme label {
+    display: inline-block;
+    color: rgba(255, 255, 255, 0.7);
+    padding: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    transition: all 0.2s cubic-bezier(0, 0.78, 0.4, 0.95); }
+    section.alertme label:hover {
+      border: 1px solid rgba(255, 255, 255, 0.7);
+      color: white; }
+  section.alertme input {
+    vertical-align: text-top; }
+article.status.alertme-active section.alertme label {
+  background-color: white;
+  border-color: white;
+  color: #DD0A17; }
+@media all and (max-width: 736px) {
   html {
-    font-size: 22px; }
+    font-size: 20px; }
   body {
-    width: 80%;
+    width: 100%;
     max-width: none;
-    margin: 6rem auto; }
+    margin: 0 auto; }
   .gender-link img {
-    height: 8rem; } }
+    height: 2rem; } }
