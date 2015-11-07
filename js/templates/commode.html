@@ -10,5 +10,11 @@
       <h1>{{openStalls}}/{{total()}}</h1>
       <h2>stalls available</h2>
     </section>
+    <section ng-show="openStalls == 0">
+      <input type="checkbox" ng-model="alertMe" ng-change="alertMeUpdated()"> Alert me when it's business time.
+    </section>
   </article>
+  <!-- for testing alert feature. Leaving it just in case. -->
+  <!-- <button ng-click="data.men = 0">test none</button> -->
+  <!-- <button ng-click="data.men = 1">test free</button> -->
 </div>

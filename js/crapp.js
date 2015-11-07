@@ -60,6 +60,28 @@ function setIcon(stallsFree) {
   }
 }
 
+function checkNotificationPermission() {
+  if (Notification.permission !== 'denied'){
+    Notification.requestPermission(function (permission) {
+      console.log("Notification permission: " + permission);
+    });
+  }
+}
+
+function notify() {
+  var msg = "It's Business Time!"
+  // check if the browser supports notifications
+  if(("Notification" in window) && (Notification.permission === "granted")){
+    var image = 'img/clock.png';
+    var options = {
+      icon: image
+    }
+    var notification = new Notification(msg, options);
+  }else{
+    window.alert(msg);
+  }
+}
+
 // Main Angular app
 crapp
 .config(function($routeProvider) {
@@ -141,11 +163,12 @@ crapp
 
 // View Settings
 .controller('CommodeController',
-  function($scope, DoorService, $routeParams) {
+  function($scope, DoorService, $routeParams, $window, $timeout) {
     DoorService.reset();
     $scope.gender = $routeParams.gender;
     $scope.data = DoorService.data;
     $scope.openStalls = 0;
+    $scope.alertMe = false;
 
     $scope.numberOpen = function() {
       return $scope.data[$scope.gender];
@@ -155,9 +178,24 @@ crapp
       return $scope.data[$scope.gender+"Total"];
     };
 
+    $scope.alertMeUpdated = function(){
+      if($scope.alertMe){
+        checkNotificationPermission();
+      }
+    };
+
     $scope.$watch("data", function(oldVal, newVal) {
       setIcon($scope.numberOpen());
       $scope.openStalls = $scope.data[$scope.gender];
+
+      // Alert a user that has been waiting for a stall to open.
+      if($scope.alertMe && ($scope.openStalls > 0)){
+        $scope.alertMe = false;
+        // wrap in a timeout so that the display can update with the new numbers.
+        $timeout(function(){
+          notify();
+        });
+      }
 
       // Wait until the first call, then tag the room viewed event with the number open
       if ($scope.data.calls == 1 && !isNaN($scope.data[$scope.gender])) {
@@ -191,5 +229,3 @@ crapp
 .run(function(DoorService) {})
 
 ;
-
-

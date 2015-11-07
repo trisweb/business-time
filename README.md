@@ -5,7 +5,8 @@ Know your business
 
 1. `npm install`
 2. `bower install`
-3. `gulp watch`
+3. Create `js/config.js` to the url of the Smartthings graph API for your specific sensors. Check `config.js.example`
+4. `gulp watch`
 
 Use the livereload extension (available in the chrome store) if you want.
 
